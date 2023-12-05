@@ -1,5 +1,7 @@
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:heart_rate/Core/constance/app_function.dart';
 
 import '../../../../Core/constance/assets_manager.dart';
 import '../../../../Core/constance/my_colors.dart';
@@ -12,12 +14,47 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool showCheckButton = true;
+  bool isPlayed = false;
+  int heartRateNum = 90;
+
+  Color heartRateColor = Colors.green;
+  final assetsAudioPlayer = AssetsAudioPlayer();
+
+  Future<void> playAlert() async {
+    try {
+      isPlayed = true;
+      // Load the audio file from assets
+      await assetsAudioPlayer
+          .open(
+            Audio("assets/sounds/alert.mp3"),
+          )
+          .then((value) {});
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
+  Future<void> pauseAlert() async {
+    try {
+      isPlayed = false;
+      // Load the audio file from assets
+      await assetsAudioPlayer.stop();
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
   // final databaseReference =
   //     FirebaseDatabase.instance.ref('Embedded/Action needed/value');
 
   @override
   Widget build(BuildContext context) {
+    if (heartRateNum > 100 || heartRateNum < 60) {
+      playAlert();
+      AppFunctions.sendAlertMessage(
+        ratio: heartRateNum,
+      );
+    }
     return Scaffold(
       backgroundColor: MyColors.appBackGroundColor,
       body: SafeArea(
@@ -38,10 +75,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
-                          "80",
+                        Text(
+                          "$heartRateNum",
                           style: TextStyle(
-                            color: Colors.green,
+                            color: heartRateColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 80,
                           ),
@@ -94,7 +131,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontSize: 22,
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    AppFunctions.sendAlertMessage(
+                      ratio: heartRateNum,
+                    );
+                  },
                 ),
               ),
             ],
