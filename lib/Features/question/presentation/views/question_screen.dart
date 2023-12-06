@@ -60,6 +60,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AllColors.appBackGroundColor,
+      appBar: AppBar(
+        backgroundColor: AllColors.appBackGroundColor,
+        elevation: 0,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -69,9 +73,9 @@ class _QuestionScreenState extends State<QuestionScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(
-                    height: 25,
-                  ),
+                  // const SizedBox(
+                  //   height: 25,
+                  // ),
                   const Text(
                     'Answer this questions.',
                     style: TextStyle(

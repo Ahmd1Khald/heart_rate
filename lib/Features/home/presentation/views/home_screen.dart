@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:heart_rate/Core/constance/app_function.dart';
 import 'package:heart_rate/Features/home/presentation/views/widgets/heart_rate_widget.dart';
 import 'package:heart_rate/Features/home/presentation/views/widgets/share_button.dart';
+import 'package:heart_rate/Features/question/presentation/views/question_screen.dart';
 
 import '../../../../Core/constance/all_colors.dart';
 import '../../../../Core/constance/assets_manager.dart';
@@ -49,6 +50,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void dispose() {
+    assetsAudioPlayer.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return StreamBuilder<DataSnapshot>(
       stream: FirebaseDataService().dataStream,
@@ -76,6 +83,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      const SizedBox(
+                        height: 30,
+                      ),
                       HeartRateWidget(
                         heartRateNum: snapshot.data!
                             .child('Now')
@@ -83,6 +93,26 @@ class _HomeScreenState extends State<HomeScreen> {
                             .value
                             .toString(),
                         heartRateColor: heartRateColor,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              AppFunctions.pushTo(
+                                  context: context,
+                                  screen: const QuestionScreen());
+                            },
+                            icon: const Icon(
+                              Icons.file_present_sharp,
+                              size: 40,
+                              color: AllColors.primaryColor,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 80,
+                          ),
+                        ],
                       ),
                       const SizedBox(
                         height: 50,
