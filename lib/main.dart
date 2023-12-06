@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'Core/helpers/cachehelper.dart';
-import 'Features/home/presentation/views/home_screen.dart';
+import 'Features/question/presentation/views/question_screen.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'AFH',
-      home: HomeScreen(),
+      home: QuestionScreen(), //HomeScreen(),
     );
   }
 }
