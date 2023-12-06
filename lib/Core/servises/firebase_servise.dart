@@ -6,7 +6,7 @@ class FirebaseDataService {
   final _dataStreamController = StreamController<DataSnapshot>();
 
   FirebaseDataService() {
-    final databaseReference = FirebaseDatabase.instance.ref('Sensor');
+    final databaseReference = FirebaseDatabase.instance.ref('Heart Rate');
     databaseReference.onValue.listen((event) {
       _dataStreamController.add(event.snapshot);
     });
