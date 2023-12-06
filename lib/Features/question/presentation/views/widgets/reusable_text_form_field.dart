@@ -3,7 +3,6 @@ import 'package:heart_rate/Core/constance/all_colors.dart';
 
 class ReusableTextFieldContainer extends StatelessWidget {
   final TextEditingController? controller;
-  final String hintText;
   final Widget? prefixIcon;
   final ValueChanged<String>? onChanged;
   final FormFieldValidator<String>? validator;
@@ -11,7 +10,6 @@ class ReusableTextFieldContainer extends StatelessWidget {
   const ReusableTextFieldContainer({
     Key? key,
     required this.controller,
-    required this.hintText,
     required this.onChanged,
     this.validator,
     this.prefixIcon,
@@ -47,7 +45,7 @@ class ReusableTextFieldContainer extends StatelessWidget {
         decoration: InputDecoration(
           fillColor: Colors.grey.shade100,
           prefixIcon: prefixIcon,
-          hintText: hintText,
+          //hintText: hintText,
           hintStyle: const TextStyle(
             color: Colors.grey,
             fontSize: 15,

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 
 class AppFunctions {
@@ -14,5 +15,9 @@ class AppFunctions {
       'Your state is $state and the heart rate is $ratio\n from AFH app',
       subject: '',
     );
+  }
+
+  static void pushTo({required context, required Widget screen}) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
   }
 }
