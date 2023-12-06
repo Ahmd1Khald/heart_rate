@@ -63,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 (hrValue is int && hrValue < 60)) {
               playAlert();
               AppFunctions.sendAlertMessage(
-                ratio: heartRateNum,
+                ratio: hrValue,
               );
               heartRateColor = Colors.red;
             } else {
@@ -99,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ShareButton(
                         fnc: () {
                           AppFunctions.sendAlertMessage(
-                            ratio: heartRateNum,
+                            ratio: hrValue as int,
                           );
                         },
                       ),

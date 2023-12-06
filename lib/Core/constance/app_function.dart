@@ -11,7 +11,7 @@ class AppFunctions {
       state = "stable";
     }
     Share.share(
-      'Your state is $state and the heart rate is $ratio\n form AFH app',
+      'Your state is $state and the heart rate is $ratio\n from AFH app',
       subject: '',
     );
   }
