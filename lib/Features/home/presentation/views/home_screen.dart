@@ -74,6 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
               );
               heartRateColor = Colors.red;
             } else {
+              pauseAlert();
               heartRateColor = Colors.green;
             }
             return Scaffold(
