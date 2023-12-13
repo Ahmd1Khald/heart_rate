@@ -66,8 +66,8 @@ class _HomeScreenState extends State<HomeScreen> {
             Object? hrValue =
                 snapshot.data!.child('Now').child('Heart Rate is').value;
             print(hrValue);
-            if ((hrValue is int && hrValue > 100) ||
-                (hrValue is int && hrValue < 60)) {
+            if ((hrValue is int && hrValue > 140) ||
+                (hrValue is int && hrValue < 83)) {
               playAlert();
               AppFunctions.sendAlertMessage(
                 ratio: hrValue,
